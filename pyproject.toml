@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "wheel-of-learning-backend"
+version = "0.1.0"
+description = ""
+authors = ["Dima Lipin <dimich3d@ya.ru>"]
+readme = "README.md"
+packages = [{include = "wheel_of_learning_backend"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
