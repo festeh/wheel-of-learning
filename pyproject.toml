@@ -8,8 +8,17 @@ packages = [{include = "wheel_of_learning_backend"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+tinydb = "^4.7.1"
+pytest = "^7.2.1"
+typer = {extras = ["all"], version = "^0.7.0"}
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.yapf] 
+based_on_style = "google"
+spaces_before_comment = 4
+split_before_logical_operator = true
+indent_width = 4
