@@ -1,7 +1,8 @@
+import random
+import string
+
 import wheel_of_learning_backend.task as task
 from wheel_of_learning_backend.db import TinyDB, get_db_root
-import string
-import random
 
 
 def test_task_2():

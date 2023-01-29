@@ -1,4 +1,7 @@
+import logging
 import os
+from typing import List, Optional
+
 import tinydb
 
 
@@ -37,8 +40,20 @@ class TinyDB:
     def get_entry_by_id(self, entry_id):
         return self.db.get(doc_id=entry_id)
 
-    def get_entry_by_name(self, name):
-        return self.db.search(tinydb.where('name') == name)
+    def get_entry_by_name(self, name) -> Optional[dict]:
+        matching = self.db.search(tinydb.where('name') == name)
+        if len(matching) == 0:
+            return None
+        if len(matching) > 1:
+            logging.warning(f'Found multiple entries with name {name}')
+            return None
+        return matching[0]
+
+    def delete_entry_by_name(self, name) -> List[int]:
+        return self.db.remove(tinydb.where('name') == name)
+
+    def delete_all_entries(self):
+        return self.db.truncate()
 
     def all_entries(self):
         return self.db.all()
