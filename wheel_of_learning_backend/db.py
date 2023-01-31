@@ -23,7 +23,10 @@ def get_db_root(tmp=False):
     else:
         if not os.getenv('XDG_DATA_HOME'):
             raise Exception('XDG_DATA_HOME not set')
-        root_path = os.getenv('XDG_DATA_HOME') + '/' + 'wheel-of-learning'
+        root_path = os.getenv(
+            'XDG_DATA_HOME',
+            os.getenv("HOME") +
+            "/.config/local/share") + '/' + 'wheel-of-learning'
     if not os.path.exists(root_path):
         os.makedirs(root_path)
     return RootPath(root_path)
