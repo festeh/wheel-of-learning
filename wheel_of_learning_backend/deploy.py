@@ -57,6 +57,15 @@ class Just(Tool):
     def install_cmd() -> str:
         return "cargo install just"
 
+class Nginx(Tool):
+    @staticmethod
+    def exist_cmd() -> str:
+        return "nginx -v"
+
+    @staticmethod
+    def install_cmd() -> str:
+        return "apt-get update && apt-get install -y nginx"
+
 class Repo(Tool):
     @staticmethod
     def exist_cmd() -> str:
@@ -97,7 +106,7 @@ def run(cmd: str):
 
 
 if __name__ == "__main__":
-    tools = [Path, Poetry, Rust, Just, Repo]
+    tools = [Path, Poetry, Rust, Just, Repo, Nginx]
     conn = remoto.Connection("linode")
     for tool in tools:
         if not check_exists(tool.exist_cmd()):
