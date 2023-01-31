@@ -21,8 +21,6 @@ def get_db_root(tmp=False):
     if tmp:
         root_path = "/tmp/db"
     else:
-        if not os.getenv('XDG_DATA_HOME'):
-            raise Exception('XDG_DATA_HOME not set')
         root_path = os.getenv(
             'XDG_DATA_HOME',
             os.getenv("HOME") +
