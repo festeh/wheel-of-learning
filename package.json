@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/festeh/wheel-of-learning/issues"
   },
-  "homepage": "https://github.com/festeh/wheel-of-learning#readme"
+  "homepage": "https://github.com/festeh/wheel-of-learning#readme",
+  "devDependencies": {
+    "parcel": "^2.8.3"
+  }
 }

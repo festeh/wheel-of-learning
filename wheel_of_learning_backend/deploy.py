@@ -66,6 +66,15 @@ class Nginx(Tool):
     def install_cmd() -> str:
         return "apt-get update && apt-get install -y nginx"
 
+class Npm(Tool):
+    @staticmethod
+    def exist_cmd() -> str:
+        return "npm --version"
+
+    @staticmethod
+    def install_cmd() -> str:
+        return "sudo apt install -y nodejs npm"
+
 class Repo(Tool):
     @staticmethod
     def exist_cmd() -> str:
@@ -92,13 +101,17 @@ def check_exists(cmd: str):
     except Exception as e:
         print(e)
         return False
-    print(out, err)
+    print("\n".join(out))
+    if err:
+        print("Error:", err)
+        return False
+    return True
     return code == 0
 
 
 def run(cmd: str):
     prep_cmd = prepare_cmd(cmd)
-    print(prep_cmd)
+    print(f"Running {prep_cmd}")
     try:
         remoto.process.run(conn, prep_cmd)
     except Exception as e:
@@ -106,7 +119,7 @@ def run(cmd: str):
 
 
 if __name__ == "__main__":
-    tools = [Path, Poetry, Rust, Just, Repo, Nginx]
+    tools = [Path, Poetry, Rust, Just, Repo, Nginx, Npm]
     conn = remoto.Connection("linode")
     for tool in tools:
         if not check_exists(tool.exist_cmd()):
