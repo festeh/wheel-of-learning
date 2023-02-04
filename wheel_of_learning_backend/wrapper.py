@@ -5,8 +5,9 @@ from wheel_of_learning_backend.task import Task
 
 class Wrapper:
 
-    def __init__(self, manager: Manager):
+    def __init__(self, manager: Manager, context="cli"):
         self.manager = manager
+        self.context = context
 
     def add(self, task_desc: str):
         task = Task(task_desc)
@@ -31,8 +32,11 @@ class Wrapper:
             logging.warning(f"Task {task_desc} does not exist")
 
     def list_tasks(self):
-        out = self.manager.print_tasks("tasks")
-        print(out)
+        if self.context == "cli":
+            print(self.manager.print_tasks("tasks"))
+            return []
+        tasks = self.manager.get_tasks("tasks")
+        return [str(task) for task in tasks]
 
     def list_daily(self):
         out = self.manager.print_tasks("daily")
