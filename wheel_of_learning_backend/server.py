@@ -8,6 +8,6 @@ wrapper = Wrapper(manager, "server")
 
 app = fastapi.FastAPI()
 
-@app.get("/api/tasks")
+@app.get("/tasks")
 def list_tasks():
     return wrapper.list_tasks()
