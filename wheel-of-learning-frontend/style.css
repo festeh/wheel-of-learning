@@ -1,0 +1,44 @@
+
+        /* Styling for the task list container */
+        .task-list {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        /* Styling for each task item */
+        .task-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        /* Styling for the checkbox */
+        .task-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        /* Styling for the task text */
+        .task-item span {
+            flex-grow: 1;
+            font-size: 18px;
+        }
+
+        /* Styling for the delete button */
+        .task-item button {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        /* Optional: Styling for completed tasks */
+        .task-item.completed span {
+            text-decoration: line-through;
+            color: #ccc;
+        }
