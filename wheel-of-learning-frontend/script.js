@@ -1,3 +1,6 @@
+import palette from "./palette";
+import Winwheel from "./Winwheel";
+
 async function getTasks(path) {
   const response = await fetch(path);
   if (response.status !== 200) {
@@ -33,10 +36,23 @@ function renderTasks(id, api_path) {
 
 renderTasks("task-list", "/api/tasks");
 renderTasks("daily-list", "/api/daily").then(() => {
-  const wheelElem = document.getElementById("wheel");
-  Array.from(document.getElementById("daily-list").children).forEach(
-    (child) => {
-      wheelElem.appendChild(child.cloneNode(true));
-    }
+  let taskItems = Array.from(document.getElementById("daily-list").children);
+  let myPalette = palette("mpn65", taskItems.length);
+  let segments = taskItems.map((item, idx) => {
+    return { fillStyle: "#" + myPalette[idx], text: idx.toString() };
+  });
+  let theWheel = new Winwheel(
+    {
+      numSegments: taskItems.length,
+      textFontSize: 50,
+      textAlignment: "outer",
+      segments: segments,
+      animation: {
+        type: "spinToStop",
+        duration: 5,
+        spins: 8,
+      },
+    },
+    true
   );
 });
