@@ -38,13 +38,27 @@ renderTasks("task-list", "/api/tasks");
 renderTasks("daily-list", "/api/daily").then(() => {
   let taskItems = Array.from(document.getElementById("daily-list").children);
   let myPalette = palette("mpn65", taskItems.length);
+  taskItems.forEach((taskItem, idx) => {
+    let box = document.createElement("div");
+    box.style.backgroundColor = "#" + myPalette[idx];
+    box.style.display = "inline-block";
+    box.style.width = "40px";
+    box.style.height = "40px";
+    box.style.justifyContent = "center";
+    box.style.textAlign = "center";
+    box.style.fontSize = "25px";
+    box.style.fontWeight = "bold";
+    box.style.verticalAlign = "middle";
+    box.innerText = idx.toString();
+    taskItem.appendChild(box);
+  });
   let segments = taskItems.map((item, idx) => {
     return { fillStyle: "#" + myPalette[idx], text: idx.toString() };
   });
   let theWheel = new Winwheel(
     {
       numSegments: taskItems.length,
-      textFontSize: 50,
+      textFontSize: Math.max(10, 120 - 14 * taskItems.length),
       textAlignment: "outer",
       segments: segments,
       animation: {
@@ -55,4 +69,6 @@ renderTasks("daily-list", "/api/daily").then(() => {
     },
     true
   );
+
+  theWheel.startAnimation()
 });
