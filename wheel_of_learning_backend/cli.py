@@ -28,12 +28,12 @@ def delete_daily(task_desc: str):
 
 @app.command()
 def list_tasks():
-    wrapper.list_tasks()
+    print(manager.print_tasks("tasks"))
 
 
 @app.command()
 def list_daily():
-    wrapper.list_daily()
+    print(manager.print_tasks("daily"))
 
 
 @app.command()

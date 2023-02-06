@@ -1,20 +1,29 @@
+<!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
     <title>Wheel of learning</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="task-list" id="task-list">
-        <!-- <div class="task-item"> -->
-        <!--     <input type="checkbox" id="task1"> -->
-        <!--     <label for="task1"><span>Task 1</span></label> -->
-        <!--     <button>Delete</button> -->
-
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="columns">
+      <div class="column">
+        <h1>All tasks</h1>
+        <div class="task-list" id="task-list"></div>
+      </div>
+      <div class="column">
+        <h1>Daily</h1>
+        <div class="task-list" id="daily-list"></div>
+      </div>
+      <div class="column">
+        <h1>Choose your focus</h1>
+        <div class="wheel-container">
+          <div class="spin-btn"></div>
+          <div class="wheel" id="wheel"></div>
+        </div>
+      </div>
     </div>
-    <div class="text">
-        Placeholderrr
-    </div>
-    <script src="script.js"/>
-</body>
+    <script src="script.js" />
+  </body>
 </html>
-

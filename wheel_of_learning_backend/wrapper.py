@@ -33,7 +33,6 @@ class Wrapper:
 
     def list_tasks(self):
         if self.context == "cli":
-            print(self.manager.print_tasks("tasks"))
             return []
         tasks = self.manager.get_tasks("tasks")
         return [str(task) for task in tasks]
