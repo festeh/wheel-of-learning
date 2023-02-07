@@ -14,7 +14,7 @@ function renderTask(tasksElem, task) {
   const taskElem = document.createElement("div");
   const taskText = document.createElement("span");
   taskElem.className = "task-item";
-  taskText.textContent = task;
+  taskText.innerText = task;
   taskElem.appendChild(taskText);
   tasksElem.appendChild(taskElem);
 }
@@ -32,6 +32,10 @@ function renderTasks(id, api_path) {
       tasksElem.innerText = error.message;
       console.log("Error", error);
     });
+}
+
+function randInt(low, high) {
+  return Math.floor(Math.random() * (high - low + 1)) + low + Math.random() * 0.1;
 }
 
 renderTasks("task-list", "/api/tasks");
@@ -53,7 +57,11 @@ renderTasks("daily-list", "/api/daily").then(() => {
     taskItem.appendChild(box);
   });
   let segments = taskItems.map((item, idx) => {
-    return { fillStyle: "#" + myPalette[idx], text: idx.toString() };
+    return {
+      fillStyle: "#" + myPalette[idx],
+      text: idx.toString(),
+      textFillStyle: "white",
+    };
   });
   let theWheel = new Winwheel(
     {
@@ -63,12 +71,12 @@ renderTasks("daily-list", "/api/daily").then(() => {
       segments: segments,
       animation: {
         type: "spinToStop",
-        duration: 5,
-        spins: 8,
+        duration: randInt(4, 7),
+        spins: randInt(5, 12),
       },
     },
     true
   );
 
-  theWheel.startAnimation()
+  theWheel.startAnimation();
 });
