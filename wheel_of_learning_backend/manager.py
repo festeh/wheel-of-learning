@@ -43,15 +43,10 @@ class Manager:
         tasks = [Task.from_mapping(task) for task in db.all_entries()]
         return tasks
 
-    def select_focused_task(self) -> Optional[Task]:
-        tasks = self.get_tasks("daily")
-        if not tasks:
-            return None
-        focused_task = choice(tasks)
+    def select_focused_task(self, task: str):
         db = self.dbs["focus"]
         db.delete_all_entries()
-        db.add_entry(focused_task.as_mapping())
-        return focused_task
+        db.add_entry(Task(task).as_mapping())
 
     def print_tasks(self, db_name: str) -> str:
         tasks = self.get_tasks(db_name)

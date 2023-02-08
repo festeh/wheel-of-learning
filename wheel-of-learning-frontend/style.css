@@ -11,8 +11,8 @@ body {
   height: 100vh;
 }
 
- * {
- color: #fff;
+* {
+  color: #fff;
 }
 /* Styling for the task list container */
 .task-list {
@@ -80,15 +80,40 @@ h1 {
   margin-top: 20px;
 }
 
+#spin {
+  font-size: 25px;
+  margin: 0px;
+  margin-top: 20px;
+  padding: 8px;
+}
+
+#pointer {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+
+  border-top: 25px solid #fff;
+  margin-bottom: 5px;
+}
+
+#focus {
+  font-weight: bold;
+  font-size: 2rem;
+  border-bottom: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
 
 @keyframes gradient {
-        0% {
-                background-position: 0% 50%;
-        }
-        50% {
-                background-position: 100% 50%;
-        }
-        100% {
-                background-position: 0% 50%;
-        }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

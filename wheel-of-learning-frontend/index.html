@@ -17,16 +17,18 @@
         <div class="task-list" id="daily-list"></div>
       </div>
       <div class="column">
-        <h1>Choose your focus</h1>
+        <!-- <h1>Choose your focus</h1> -->
         <div class="wheel-container">
-          <div>
-            <canvas id="canvas" width="300" height="300">
-                          Canvas not supported, use another browser.
-                      </canvas
-            >
-          </div>
+        <div id="focus"></div>
+          <div id="pointer"></div>
+          <canvas id="canvas" width="300" height="300">
+                        Canvas not supported, use another browser.
+                    </canvas
+          >
           <div class="spin-btn" display="block">
-            <button type="">Let's go!</button>
+            <button type="submit" class="button is-light is-outlined" id="spin">
+              Let's go!
+            </button>
           </div>
         </div>
       </div>

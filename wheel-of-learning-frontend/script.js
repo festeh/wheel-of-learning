@@ -35,7 +35,9 @@ function renderTasks(id, api_path) {
 }
 
 function randInt(low, high) {
-  return Math.floor(Math.random() * (high - low + 1)) + low + Math.random() * 0.1;
+  return (
+    Math.floor(Math.random() * (high - low + 1)) + low + Math.random() * 0.1
+  );
 }
 
 renderTasks("task-list", "/api/tasks");
@@ -73,10 +75,48 @@ renderTasks("daily-list", "/api/daily").then(() => {
         type: "spinToStop",
         duration: randInt(4, 7),
         spins: randInt(5, 12),
+        callbackFinished: (segment) => {
+          const idx = parseInt(segment.text);
+          let name = taskItems[idx].innerText;
+          fetch("api/focus", {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name: name }),
+          }).then((response) => {
+            renderFocus();
+          });
+        },
       },
     },
     true
   );
 
-  theWheel.startAnimation();
+  let spinButton = document.getElementById("spin");
+  spinButton.addEventListener("click", () => {
+    theWheel.stopAnimation(false);
+    theWheel.rotationAngle = 0;
+    theWheel.draw();
+    theWheel.startAnimation();
+  });
 });
+
+async function renderFocus() {
+  const focusElem = document.getElementById("focus");
+  focusElem.innerHTML = "";
+  try {
+    const tasks = await getTasks("/api/focus");
+    if (tasks.length === 0) {
+      focusElem.innerText = "Choose your focus";
+    } else {
+      focusElem.innerText = tasks[0];
+    }
+  } catch (error) {
+    focusElem.innerText = error.message;
+    console.log("Error", error);
+  }
+}
+
+renderFocus();
